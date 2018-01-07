@@ -3,4 +3,5 @@ $font : rgb(0, 110, 255);
 h1 {
     color: $font;
     transform: translate(20px);
+    display: flex; 
 }

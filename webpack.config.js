@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
@@ -11,46 +12,42 @@ let config = {
     filename: 'bundle.js',
     publicPath: "/js/"
   },
-  devtool: dev ? "cheap-module-eval-source-map" : "source-map",
+  devtool: dev
+    ? "cheap-module-eval-source-map"
+    : "source-map",
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: ['babel-loader']
-      },
-      {
+      }, {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(scss|sass)$/,
+      }, {
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
+
           use: [
-            'style-loader',
-            { loader: 'css-loader', options: { importLoaders: 1}},
             {
+              loader: 'css-loader'
+            }, {
               loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
-                plugins: (loader) => [
-                  require('autoprefixer')({
-                    browsers: ['last 2 versions', 'ie > 8']
-                  }),
-                ]
+                config: {
+                  path: 'postcss.config.js'
+                }
               }
-            }          
-           , 'sass-loader'
+            }, {
+              loader: 'sass-loader'
+            }
           ]
         })
       }
     ]
   },
-  plugins: [new ExtractTextPlugin({
-    filename: '[name].css',
-    disable: dev
-  })],
+  plugins: [new ExtractTextPlugin({filename: '[name].css', disable: dev})],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     overlay: true,
@@ -60,10 +57,10 @@ let config = {
 }
 
 if (!dev) {
-  config.plugins.push(new UglifyJsPlugin({
-    sourceMap: true
-  }))
-  
+  config
+    .plugins
+    .push(new UglifyJsPlugin({sourceMap: true}))
+
 }
 
 module.exports = config
