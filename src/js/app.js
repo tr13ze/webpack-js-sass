@@ -1,5 +1,4 @@
 import {component} from './component'
-import css from '../scss/styles.scss'
 
 let some = 1
 

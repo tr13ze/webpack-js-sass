@@ -5,16 +5,18 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const dev = process.env.NODE_ENV === "dev"
 
 let config = {
-  entry: './src/js/app.js',
+  entry: {
+    app:['./src/scss/app.scss','./src/js/app.js']
+  },
   watch: dev,
   output: {
     path: path.resolve('./dist/js'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: "/js/"
   },
   devtool: dev
     ? "cheap-module-eval-source-map"
-    : "source-map",
+    : false,
   module: {
     rules: [
       {
@@ -25,13 +27,17 @@ let config = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       }, {
-        test: /\.scss$/,
+        test: /\.(scss|sass)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
 
           use: [
             {
-              loader: 'css-loader'
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                minimize: !dev
+              }
             }, {
               loader: 'postcss-loader',
               options: {
@@ -44,6 +50,24 @@ let config = {
             }
           ]
         })
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name:'[name].[ext]'
+            }
+          },
+          {
+            loader: 'img-loader',
+            options: {
+              enabled: !dev
+            }
+          }
+        ]
       }
     ]
   },
@@ -59,7 +83,7 @@ let config = {
 if (!dev) {
   config
     .plugins
-    .push(new UglifyJsPlugin({sourceMap: true}))
+    .push(new UglifyJsPlugin({sourceMap: false}))
 
 }
 
