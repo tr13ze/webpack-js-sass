@@ -2,11 +2,12 @@ const webpack = require("webpack");
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const DashboardPlugin = require("webpack-dashboard/plugin")
 const dev = process.env.NODE_ENV === "dev"
 
 let config = {
   entry: {
-    app:['./src/scss/app.scss','./src/js/app.js']
+    app: ['./src/scss/app.scss', './src/js/app.js']
   },
   watch: dev,
   output: {
@@ -50,18 +51,19 @@ let config = {
             }
           ]
         })
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
+      }, {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'file-loader'
+      }, {
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name:'[name].[ext]'
+              name: '[name].[ext]'
             }
-          },
-          {
+          }, {
             loader: 'img-loader',
             options: {
               enabled: !dev
@@ -71,11 +73,16 @@ let config = {
       }
     ]
   },
-  plugins: [new ExtractTextPlugin({filename: '[name].css', disable: dev})],
+  plugins: [
+    new ExtractTextPlugin({filename: '[name].css', disable: dev}),
+    new DashboardPlugin()
+  ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     overlay: true,
     compress: true,
+    historyApiFallback: true,
+    inline: true,
     port: 9000
   }
 }
