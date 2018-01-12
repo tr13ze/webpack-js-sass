@@ -2,7 +2,6 @@ const webpack = require("webpack");
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const DashboardPlugin = require("webpack-dashboard/plugin")
 const dev = process.env.NODE_ENV === "dev"
 
 let config = {
@@ -74,8 +73,7 @@ let config = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin({filename: '[name].css', disable: dev}),
-    new DashboardPlugin()
+    new ExtractTextPlugin({filename: '[name].css', disable: dev})
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),

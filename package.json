@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "server": "webpack-dev-server --open",
-    "start": "NODE_ENV=dev webpack-dashboard webpack-dev-server --hot --open",
+    "start": "NODE_ENV=dev webpack-dev-server --hot --open",
     "prod": "webpack"
   },
   "devDependencies": {
@@ -28,7 +28,6 @@
     "uglifyjs-webpack-plugin": "^1.1.5",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
-    "webpack-dashboard": "^1.0.2",
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {}
