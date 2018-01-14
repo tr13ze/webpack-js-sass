@@ -1,7 +1,6 @@
 node_modules
 package-lock.json
-dist/js
-dist/css
+dist
 
 # OS generated files #
 ######################
