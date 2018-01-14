@@ -1,7 +1,12 @@
-$font : rgb(0, 110, 255);
+@import 'fonts/opsl.scss';
+$font : rgb(255, 0, 191);
+$OPSL : 'Open Sans Light';
 
 h1 {
     color: $font;
+    display: flex;
+    font-family: $OPSL;
+    font-size: 3rem;
+    font-weight: 900; 
     transform: translate(20px);
-    display: flex; 
 }

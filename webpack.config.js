@@ -2,6 +2,8 @@ const webpack = require("webpack");
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPLugin = require('clean-webpack-plugin')
 const dev = process.env.NODE_ENV === "dev"
 
 let config = {
@@ -10,9 +12,8 @@ let config = {
   },
   watch: dev,
   output: {
-    path: path.resolve('./dist/js'),
-    filename: '[name].js',
-    publicPath: "/js/"
+    path: path.resolve('./dist/'),
+    filename: 'js/[name].js'
   },
   devtool: dev
     ? "cheap-module-eval-source-map"
@@ -30,7 +31,6 @@ let config = {
         test: /\.(scss|sass)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-
           use: [
             {
               loader: 'css-loader',
@@ -52,7 +52,12 @@ let config = {
         })
       }, {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'fonts/',
+          publicPath: '../'
+        }
       }, {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
@@ -60,7 +65,9 @@ let config = {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name: '[name].[ext]'
+              name: '[name].[ext]',
+              outputPath: 'img/',
+              publicPath: '../'
             }
           }, {
             loader: 'img-loader',
@@ -69,11 +76,21 @@ let config = {
             }
           }
         ]
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader']
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({filename: '[name].css', disable: dev})
+    new ExtractTextPlugin({
+      filename: 'css/[name].css', disable: dev
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
+    new CleanWebpackPLugin(['dist'])
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),

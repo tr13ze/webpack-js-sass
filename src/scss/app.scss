@@ -2,5 +2,6 @@
 $background: #999;
 
 body {
-    background: $background url(./pic.jpg); 
+    background: $background url(../img/pic.jpg);
+    background-size: cover; 
 }
