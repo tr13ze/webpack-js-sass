@@ -1,37 +1,44 @@
 {
   "name": "webpack-js-sass",
-  "description": "",
+  "description": "boilerplate for SASS & Javascript & Webpack 4",
   "version": "1.0.0",
   "author": "tr13ze",
   "license": "MIT",
   "main": "index.js",
+  "keywords": [
+    "boilerplate",
+    "webpack",
+    "sass",
+    "javascript"
+  ],
   "scripts": {
     "server": "webpack-dev-server --open",
     "start": "NODE_ENV=dev webpack-dev-server --hot --open",
     "prod": "webpack"
   },
   "devDependencies": {
-    "autoprefixer": "^7.2.6",
+    "autoprefixer": "^8.4.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^2.30.1",
-    "img-loader": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "img-loader": "^3.0.0",
     "node-sass": "^4.9.0",
-    "postcss-loader": "^2.1.4",
-    "sass-loader": "^6.0.7",
-    "style-loader": "^0.19.1",
+    "postcss-loader": "^2.1.5",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "url-loader": "^0.6.2",
-    "webpack": "^4.6.0",
-    "webpack-dev-server": "^3.1.4"
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {}
 }

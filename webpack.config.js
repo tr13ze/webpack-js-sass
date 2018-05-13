@@ -67,7 +67,7 @@ let config = {
               limit: 8192,
               name: '[name].[ext]',
               outputPath: 'img/',
-              publicPath: '../'
+              publicPath: '../img/'
             }
           }, {
             loader: 'img-loader',
@@ -85,12 +85,12 @@ let config = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: 'css/[name].css', disable: dev
+      filename: 'css/[name].css', disable: dev,  allChunks: true
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }),
-    new CleanWebpackPLugin(['dist'])
+    })
+    ,new CleanWebpackPLugin(['dist'])
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
