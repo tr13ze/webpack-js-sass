@@ -11,7 +11,7 @@ npm install or yarn install
 npm run server
 
 # Dev mod with server
-npm start
+npm run start
 
 # Build for production
 npm run prod
