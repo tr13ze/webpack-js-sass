@@ -1,10 +1,10 @@
 const webpack = require("webpack");
-const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPLugin = require('clean-webpack-plugin')
-const dev = process.env.NODE_ENV === "dev"
+const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPLugin = require('clean-webpack-plugin');
+const dev = process.env.NODE_ENV === "dev";
 
 let config = {
   entry: {
@@ -35,8 +35,8 @@ let config = {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
-                minimize: !dev
+                importLoaders: 2,
+                //minimize: !dev
               }
             }, {
               loader: 'postcss-loader',
@@ -100,7 +100,7 @@ let config = {
     inline: true,
     port: 9000
   }
-}
+};
 
 if (!dev) {
   config
@@ -109,4 +109,4 @@ if (!dev) {
 
 }
 
-module.exports = config
+module.exports = config;

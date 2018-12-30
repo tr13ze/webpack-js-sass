@@ -1,5 +1,6 @@
-# Webpack 4 Starter
-> This is a boilerplate for SASS & Javascript & Webpack 4 (not CLI). It includes webpack-dev-server and a build script
+# Webpack Front-End Starter
+> This is a boilerplate for ES6 & SASS with Webpack 4 & Babel 7.
+> It includes webpack-dev-server and a build script
 
 ## Quick Start
 
@@ -29,7 +30,7 @@ Chris Meyer
 
 ### Version
 
-1.0.0
+1.0.1
 
 ### License
 
