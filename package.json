@@ -43,7 +43,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "greensock": "^1.20.2",
+    "gsap": "^2.0.2",
     "three": "^0.99.0"
   }
 }
