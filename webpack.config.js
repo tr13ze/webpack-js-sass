@@ -3,7 +3,7 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPLugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const dev = process.env.NODE_ENV === "dev";
 
 let config = {
@@ -26,7 +26,7 @@ let config = {
         use: ['babel-loader']
       }, {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['css-loader', 'css-loader']
       }, {
         test: /\.(scss|sass)$/,
         use: ExtractTextPlugin.extract({
@@ -35,8 +35,7 @@ let config = {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 2,
-                //minimize: !dev
+                importLoaders: 2
               }
             }, {
               loader: 'postcss-loader',
@@ -56,7 +55,7 @@ let config = {
         options: {
           name: '[name].[ext]',
           outputPath: 'fonts/',
-          publicPath: '../'
+          publicPath: '../fonts/'
         }
       }, {
         test: /\.(png|jpg|gif|svg)$/,
@@ -89,8 +88,8 @@ let config = {
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    })
-    ,new CleanWebpackPLugin(['dist'])
+    }),
+    new CleanWebpackPlugin(['dist'])
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
