@@ -24,7 +24,13 @@ let config = {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: ['babel-loader']
-      }, {
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: ['eslint-loader']
+      },
+      {
         test: /\.css$/,
         use: ['css-loader', 'css-loader']
       }, {
